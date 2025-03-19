@@ -8,6 +8,7 @@ import ReactFlow, {
   useReactFlow,
   Position,
 } from "reactflow";
+import InitialNode from "./nodes/InitialNode.js";
 
 import { initialNodes, initialEdges } from "./nodes-edges.js";
 import "reactflow/dist/style.css";
@@ -72,6 +73,48 @@ const useLayoutedElements = () => {
   return { getLayoutedElements };
 };
 
+// export enum NodeType {
+//   INITIAL = 'initial',
+//   PROMPT = 'prompt',
+//   BUSINESS_HOURS = 'business_hours',
+//   MENU = 'menu',
+//   USER_INPUT = 'user_input',
+//   LANGUAGE = 'language',
+//   RECORD = 'record',
+//   LOOP = 'loop',
+//   LOOP_START = 'loop_start',
+//   LOOP_END = 'loop_end',
+//   DIAL_BY_NUMBER = 'dial_number',
+//   CONDITION = 'condition',
+//   DEVELOPER = 'developer',
+//   DIAL_BY_NAME = 'dial_name',
+//   HANG_UP_CALL = 'hangup_call',
+//   TRANSFER = 'transfer',
+//   BRANCH = 'branch',
+//   END = 'end',
+// }
+
+const nodeTypes = {
+  [initial]: InitialNode,
+  // [NodeType.MENU]: MenuNode,
+  // [NodeType.BRANCH]: BranchNode,
+  // [NodeType.END]: EndNode,
+  // [NodeType.CONDITION]: ConditionNode,
+  // [NodeType.LOOP]: LoopNode,
+  // [NodeType.LOOP_START]: LoopEndNode,
+  // [NodeType.LOOP_END]: LoopEndNode,
+  // [NodeType.TRANSFER]: TransferNode,
+  // [NodeType.HANG_UP_CALL]: HangUpNode,
+  // [NodeType.DIAL_BY_NAME]: DialNameNode,
+  // [NodeType.DIAL_BY_NUMBER]: DialNumberNode,
+  // [NodeType.DEVELOPER]: DeveloperNode,
+  // [NodeType.RECORD]: RecordNode,
+  // [NodeType.LANGUAGE]: LanguageNode,
+  // [NodeType.USER_INPUT]: UserInputNode,
+  // [NodeType.BUSINESS_HOURS]: BusinessHoursNode,
+  // [NodeType.PROMPT]: PromptNode,
+};
+
 const LayoutFlow = () => {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
@@ -79,6 +122,7 @@ const LayoutFlow = () => {
 
   return (
     <ReactFlow
+      nodeTypes={nodeTypes}
       nodes={nodes}
       edges={edges}
       onNodesChange={onNodesChange}
